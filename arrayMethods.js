@@ -18,6 +18,7 @@ function filter(array, cb) {
 	const newArray = []
 
 	for (let i = 0; i < array.length; i++) {
+		// Push on the array items which return true by the callback func
 		if (cb(array[i], i, array)) {
 			newArray.push(array[i])
 		}
