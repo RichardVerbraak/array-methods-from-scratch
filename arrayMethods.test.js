@@ -1,4 +1,11 @@
-const { forEach, map, filter, reduce } = require('./arrayMethods.js')
+const {
+	forEach,
+	map,
+	filter,
+	reduce,
+	some,
+	every,
+} = require('./arrayMethods.js')
 
 it('forEach', () => {
 	const func = jest.fn()

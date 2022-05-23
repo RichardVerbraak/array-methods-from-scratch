@@ -50,4 +50,26 @@ function reduce(array, cb, initialValue) {
 	return initialValue
 }
 
-module.exports = { forEach, map, filter, reduce }
+// If the cb in the loop doesnt return true then return false
+function some(array, cb) {
+	for (let i = 0; i < array.length; i++) {
+		if (cb(array[i], i, array)) {
+			return true
+		}
+	}
+
+	return false
+}
+
+// If the callback returns true for every element then return true, else false
+function every(array, cb) {
+	for (let i = 0; i < array.length; i++) {
+		if (!cb(array[i], i, array)) {
+			return false
+		}
+	}
+
+	return true
+}
+
+module.exports = { forEach, map, filter, reduce, some, every }
