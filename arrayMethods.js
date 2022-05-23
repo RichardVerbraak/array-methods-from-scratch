@@ -72,4 +72,17 @@ function every(array, cb) {
 	return true
 }
 
-module.exports = { forEach, map, filter, reduce, some, every }
+function flat(array, depth) {
+	let newArray = []
+	for (let i = 0; i < array.length; i++) {
+		if (Array.isArray(array[i])) {
+			newArray.push(...array[i])
+		} else {
+			newArray.push(array[i])
+		}
+	}
+
+	return newArray
+}
+
+module.exports = { forEach, map, filter, reduce, some, every, flat }
