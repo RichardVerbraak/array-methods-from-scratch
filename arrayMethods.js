@@ -72,11 +72,38 @@ function every(array, cb) {
 	return true
 }
 
-function flat(array, depth) {
+// If the item in the array is an array
+// Push the spread out array into the new array and depth - 1
+
+// Explanation for first test
+//// First flat() call
+// Looping through array -- [1, [2, 3], [4, [5, 6, [7, 8]]]]
+// 1 -- else triggers
+// New Array = [1]
+
+//// Second flat() call
+// [2, 3] -- if triggers, it's an array and depth > 0
+// flat(2, 3, depth = 0)
+// Looping through 2, 3
+// 2, 3 -- else triggers twice
+// New Array == [1, 2, 3]
+
+//// Back to first flat() call?
+// [4, [5, 6, [7, 8]]] -- if triggers it's an array and depth > 0
+// flat(4, [5, 6, [7, 8]], depth = 0)
+// New Array = [1, 2, 3, 4, [5, 6, [7, 8]]]
+
+function flat(array, depth = 1) {
 	let newArray = []
+
+	console.log(depth)
+
 	for (let i = 0; i < array.length; i++) {
-		if (Array.isArray(array[i])) {
-			newArray.push(...array[i])
+		// base case
+		if (Array.isArray(array[i]) && depth > 0) {
+			console.log(...array[i])
+
+			newArray.push(...flat(array[i], depth - 1))
 		} else {
 			newArray.push(array[i])
 		}
@@ -84,5 +111,21 @@ function flat(array, depth) {
 
 	return newArray
 }
+
+// if (!depth) {
+// 	for (let i = 0; i < array.length; i++) {
+// 		if (Array.isArray(array[i])) {
+// 			newArray.push(...array[i])
+// 		} else {
+// 			newArray.push(array[i])
+// 		}
+// 	}
+// }
+
+// if (depth) {
+// 	for (let i = 0; i < array.length; i++) {
+// 		console.log(array[i])
+// 	}
+// }
 
 module.exports = { forEach, map, filter, reduce, some, every, flat }
