@@ -96,13 +96,9 @@ function every(array, cb) {
 function flat(array, depth = 1) {
 	let newArray = []
 
-	console.log(depth)
-
 	for (let i = 0; i < array.length; i++) {
 		// base case
 		if (Array.isArray(array[i]) && depth > 0) {
-			console.log(...array[i])
-
 			newArray.push(...flat(array[i], depth - 1))
 		} else {
 			newArray.push(array[i])
@@ -112,20 +108,12 @@ function flat(array, depth = 1) {
 	return newArray
 }
 
-// if (!depth) {
-// 	for (let i = 0; i < array.length; i++) {
-// 		if (Array.isArray(array[i])) {
-// 			newArray.push(...array[i])
-// 		} else {
-// 			newArray.push(array[i])
-// 		}
-// 	}
-// }
+function find(array, cb) {
+	for (let i = 0; i < array.length; i++) {
+		if (cb(array[i], i, array)) {
+			return array[i]
+		}
+	}
+}
 
-// if (depth) {
-// 	for (let i = 0; i < array.length; i++) {
-// 		console.log(array[i])
-// 	}
-// }
-
-module.exports = { forEach, map, filter, reduce, some, every, flat }
+module.exports = { forEach, map, filter, reduce, some, every, flat, find }

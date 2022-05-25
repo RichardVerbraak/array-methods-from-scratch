@@ -6,6 +6,7 @@ const {
 	some,
 	every,
 	flat,
+	find,
 } = require('./arrayMethods.js')
 
 it('forEach', () => {
